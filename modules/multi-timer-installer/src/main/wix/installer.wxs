@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://schemas.microsoft.com/wix/2006/wi file:///C:/Program%20Files%20(x86)/WiX%20Toolset%20v3.11/doc/wix.xsd"
+	RequiredVersion="3.11.0.1701">
+	<!--RequiredVersion="3.11.2.4516"> -->
+	<Product Id="{7A7E0FDC-2983-48DA-95A0-1D10CC80B27A}"
+		Codepage="1252" Language="1033" Manufacturer="Quatinus"
+		Name="Multi-Timer 1.0"
+		UpgradeCode="{BA0F9162-2AC9-4BCB-94E7-01E1AF899B11}" Version="1.0.0">
+		<Package Id="*" Keywords="Installer"
+			Description="Multi-Timer 1.0 Installer"
+			Comments="Quatinus for quality software engineering"
+			Manufacturer="Quatinus" InstallScope="perMachine"
+			InstallerVersion="200" Languages="1033" Compressed="yes"
+			SummaryCodepage="1252" />
+		<Media Id="1" Cabinet="MultiTimer.cab" EmbedCab="yes"
+			DiskPrompt="Medium #1" />
+		<Property Id="DiskPrompt"
+			Value="Quatinus Multi-Timer 1.0 Installation [1]" />
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder" Name="PFiles">
+				<Directory Id="Quatinus" Name="Quatinus">
+					<Directory Id="INSTALLDIR" Name="Multi-Timer 1.0">
+						<Directory Id="binDIR" Name="bin">
+							<Component Id="MultiTimerEXE"
+								Guid="{D65E7A87-D46E-40B9-99C4-F8593AA10064}">
+								<File Id="MultiTimerAppEXE" Name="MultiTimer.exe"
+									DiskId="1" Source="target\bin\MultiTimer.exe">
+									<Shortcut Id="MultiTimerStartMenuShortcut"
+										Directory="MultiTimerMenuDir" Name="Multi-Timer 1.0"
+										WorkingDirectory="binDIR" Icon="timer.ico" IconIndex="0" />
+									<Shortcut Id="MultiTimerDesktopShortcut"
+										Directory="DesktopFolder" Name="Multi-Timer 1.0"
+										WorkingDirectory="binDIR" Icon="timer.ico" IconIndex="0" />
+								</File>
+								<RegistryValue Root="HKCU"
+									Key="Software\[Manufacturer]\[ProductName]" Type="string"
+									Value="" KeyPath="yes" />
+								<ProgId Id="Multi-Timer.File" Icon="MultiTimerAppEXE" IconIndex="0"
+									Description="Multi-Timer File">
+									<Extension Id="timers" ContentType="application/json/x-multi-timer">
+										<Verb Id="open" Command="Open"
+											TargetFile="MultiTimerAppEXE" Argument='"%1"' />
+									</Extension>
+								</ProgId>
+							</Component>
+						</Directory>
+						<Directory Id="libDIR" Name="lib">
+							<Component Id="MultiTimerLIB"
+								Guid="{3ADC1723-F423-4D1F-BB27-6728C1A27662}">
+								<File Id="MultiTimerJAR" KeyPath="yes" DiskId="1"
+									Source="target\lib\multi-timer-app.jar" />
+							</Component>
+							<Component Id="JsonApiLIB"
+								Guid="{9D9CFB58-225B-4E4A-B018-39E64BF8301C}">
+								<File Id="JsonApiJAR" KeyPath="yes" DiskId="1"
+									Source="target\lib\javax.json-api.jar" />
+							</Component>
+							<Component Id="JsonBindApiLIB"
+								Guid="{D8190433-A27B-45B6-B55E-D44026268426}">
+								<File Id="JsonBindApiJAR" KeyPath="yes" DiskId="1"
+									Source="target\lib\javax.json.bind-api.jar" />
+							</Component>
+							<Component Id="JohnzonLIB"
+								Guid="{3928E659-DC53-4713-9E99-F6FA3698E420}">
+								<File Id="JohnzonCoreJAR" KeyPath="yes" DiskId="1"
+									Source="target\lib\johnzon-core.jar" />
+								<File Id="JohnzonJsonbJAR" DiskId="1"
+									Source="target\lib\johnzon-jsonb.jar" />
+								<File Id="JohnzonJsonbExtrasJAR" DiskId="1"
+									Source="target\lib\johnzon-jsonb-extras.jar" />
+								<File Id="JohnzonMapperJAR" DiskId="1"
+									Source="target\lib\johnzon-mapper.jar" />
+							</Component>
+						</Directory>
+						<Directory Id="modulesDIR" Name="modules">
+							<Component Id="JavaFxLIB"
+								Guid="{CA1EE3BF-B205-40D1-AC85-2F6A67C39C14}">
+								<File Id="JavaFxBaseJAR" KeyPath="yes" DiskId="1"
+									Source="target\modules\javafx-base.jar" />
+								<File Id="JavaFxBaseWinJAR" DiskId="1"
+									Source="target\modules\javafx-base-win.jar" />
+								<File Id="JavaFxControlsJAR" DiskId="1"
+									Source="target\modules\javafx-controls.jar" />
+								<File Id="JavaFxControlsWinJAR"
+									Source="target\modules\javafx-controls-win.jar" />
+								<File Id="JavaFxFxmlJAR" DiskId="1"
+									Source="target\modules\javafx-fxml.jar" />
+								<File Id="JavaFxFxmlWinJAR" DiskId="1"
+									Source="target\modules\javafx-fxml-win.jar" />
+								<File Id="JavaFxGraphicsJAR" DiskId="1"
+									Source="target\modules\javafx-graphics.jar" />
+								<File Id="JavaFxGraphicsWinJAR" DiskId="1"
+									Source="target\modules\javafx-graphics-win.jar" />
+							</Component>
+						</Directory>
+					</Directory>
+				</Directory>
+			</Directory>
+
+			<Directory Id="DesktopFolder" Name="Desktop" />
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="MultiTimerMenuDir" Name="Multi-Timer 1.0">
+					<Component Id="MultiTimerMenuDir"
+						Guid="{AD0556E4-CF7B-4A62-9C5D-F0BF028AC587}">
+						<RemoveFolder Id="MultiTimerMenuDir" On="uninstall" />
+						<RegistryValue Root="HKCU"
+							Key="Software\[Manufacturer]\[ProductName]" Type="string"
+							Value="" KeyPath="yes" />
+					</Component>
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<Feature Id="Complete" Level="1">
+			<ComponentRef Id="MultiTimerEXE" />
+			<ComponentRef Id="MultiTimerLIB" />
+			<ComponentRef Id="JsonApiLIB" />
+			<ComponentRef Id="JsonBindApiLIB" />
+			<ComponentRef Id="JohnzonLIB" />
+			<ComponentRef Id="JavaFxLIB" />
+			<ComponentRef Id="MultiTimerMenuDir" />
+			<!-- <ComponentRef Id="StartMenuShortcut" /> -->
+		</Feature>
+		<Icon Id="timer.ico" SourceFile="src/main/resources/timer.ico" />
+	</Product>
+</Wix>

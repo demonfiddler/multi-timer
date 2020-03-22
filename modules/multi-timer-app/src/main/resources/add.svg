@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<defs>
+  <style>.line{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px;}</style>
+</defs>
+<g>
+<circle class="line" cx="12" cy="12" r="11"/>
+<line class="line" x1="12" y1="6" x2="12" y2="18"/>
+<line class="line" x1="18" y1="12" x2="6" y2="12"/>
+</g>
+</svg>

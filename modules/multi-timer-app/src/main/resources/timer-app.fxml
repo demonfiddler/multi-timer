@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<GridPane vgap="4.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.demonfiddler.timer.MultiTimerController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
+      <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="ALWAYS" />
+   </rowConstraints>
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu onShowing="#onFileMenuShowing" text="_File">
+            <items>
+                  <MenuItem onAction="#create" text="_New">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem onAction="#open" text="_Open...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="miFileSave" onAction="#save" onMenuValidation="#validateSave" text="_Save">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="miFileSaveAs" onAction="#saveAs" onMenuValidation="#validateSaveAs" text="Save _As...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem fx:id="miFileClose" onAction="#close" onMenuValidation="#validateClose" text="_Close">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="F4" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem onAction="#exit" text="_Exit" />
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+          </Menu>
+          <Menu onShowing="#onTimerMenuShowing" text="_Timer">
+            <items>
+              <MenuItem fx:id="miTimerRun" onAction="#run" onMenuValidation="#validateRun" text="_Run" />
+                  <MenuItem fx:id="miTimerAdd" onAction="#add" onMenuValidation="#validateAdd" text="_Add" />
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="T" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+          </Menu>
+          <Menu text="_Help">
+            <items>
+                  <MenuItem onAction="#website" text="_Online" />
+                  <MenuItem onAction="#licence" text="_Licensing" />
+              <MenuItem onAction="#about" text="_About" />
+            </items>
+          </Menu>
+        </menus>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </MenuBar>
+      <HBox alignment="CENTER_RIGHT" spacing="4.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </GridPane.margin>
+         <children>
+            <CheckBox fx:id="cbxDelayStart" disable="true" mnemonicParsing="false" text="Delay start until" />
+            <Spinner fx:id="spiMinsOffset" disable="true" editable="true" prefWidth="56.0" />
+            <Label fx:id="lblMinsOffset" disable="true" text="mins past the hour" />
+            <Circle fx:id="shpState" disable="true" fill="LIGHTGRAY" radius="8.0" stroke="BLACK" strokeType="INSIDE">
+               <effect>
+                  <Glow />
+               </effect></Circle>
+            <ButtonBar buttonMinWidth="32.0">
+              <buttons>
+                  <Button fx:id="btnRun" mnemonicParsing="false" onAction="#run">
+                     <graphic>
+                        <ImageView disable="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@start.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button disable="true" mnemonicParsing="false" visible="false" />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+              </buttons>
+            </ButtonBar>
+         </children>
+         <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </padding>
+      </HBox>
+      <VBox fx:id="vbxTimers" maxWidth="1.7976931348623157E308" spacing="4.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+         </GridPane.margin></VBox>
+   </children>
+</GridPane>
