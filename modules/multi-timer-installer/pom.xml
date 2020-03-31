@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.github.demonfiddler.multi-timer</groupId>
 		<artifactId>multi-timer</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 	<artifactId>multi-timer-installer</artifactId>
