@@ -1,11 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.github.demonfiddler.multi-timer</groupId>
 		<artifactId>multi-timer</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../..</relativePath>
 	</parent>
 	<artifactId>multi-timer-installer</artifactId>
@@ -114,7 +112,7 @@
 								<fileVersion>1.0.0.0</fileVersion>
 								<txtFileVersion>1.0 beta release</txtFileVersion>
 								<fileDescription>Quatinus Multi-Timer application</fileDescription>
-								<copyright>&#x00A9; 2020 Adrian Price. All rights reserved.</copyright>
+								<copyright>© 2020 Adrian Price. All rights reserved.</copyright>
 								<productVersion>1.0.0.0</productVersion>
 								<txtProductVersion>1.0 beta release</txtProductVersion>
 								<productName>Multi-Timer</productName>
