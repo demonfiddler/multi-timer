@@ -12,7 +12,7 @@
 	<properties>
 		<javafx.version>14</javafx.version>
 		<javax.json.version>1.1.4</javax.json.version>
-		<johnzon.version>1.2.3</johnzon.version>
+		<johnzon.version>1.2.21</johnzon.version>
 		<jasson.version>1.0.6</jasson.version>
 	</properties>
 	<build>
